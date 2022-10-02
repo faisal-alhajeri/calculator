@@ -24,12 +24,17 @@ function App() {
       const numbersAndOperators = ['1','2','3','4','5','6','7','8','9','0','(',')','-','+','*','/']
       if(numbersAndOperators.includes(e.key)){
         addSymbol(e.key)
-      } else if(e.key === 'Enter'){
+      } else if(e.key === 'Enter' || e.key === '='){
         compute()
       } else if(e.key === 'Backspace'){
         deleteSymbol()
+      } else if(e.key === 'ArrowRight'){
+        next()
+      } else if(e.key === 'ArrowLeft'){
+        prev()
       }
 
+      
     }
 
     document.addEventListener("keydown", handlePress);
