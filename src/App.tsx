@@ -16,6 +16,7 @@ function App() {
     pointer,
     next,
     prev,
+    reset
   } = useCalculator();
 
   return (
@@ -88,6 +89,9 @@ function App() {
           </button>
           <button className="calc-button" onClick={() => compute()}>
             =
+          </button>
+          <button className="calc-button" onClick={() => reset()}>
+            AC
           </button>
           </Container>
 
