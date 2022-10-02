@@ -86,5 +86,6 @@ a.link{
   border: 0.5px solid black;
   font-size: 20px;
   margin: 2px ;
+  border-radius: 25px;
 }
 
