@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
+export const operators = ["+", "-", "*", "/"];
+
 type calculatorCtxValues = {
   equation: string;
   pointer: number;
   result: string | null;
+  reset: () => void;
   formatEquation: () => any;
   compute: () => void;
   addSymbol: (symbol: string) => void;
@@ -42,13 +45,17 @@ export default function CalculatorProvider({ children }: { children: any }) {
       return <span className="pointer-span empty-pointer"></span>;
 
     const newEquationFormatted = equationList.map((symbol, index) => {
-      if (index === pointer)
-        return <span className="pointer-span">{symbol}</span>;
-      return <span>{symbol}</span>;
+      const spanClassList = [];
+      if (index === pointer) spanClassList.push("pointer-span");
+
+      if (operators.includes(symbol)) spanClassList.push("operator-span");
+      return <span className={spanClassList.join(" ")}>{symbol}</span>;
     });
 
-    if (equationList.length === pointer )
-      newEquationFormatted.push(<span className="pointer-span empty-pointer"></span>) ;
+    if (equationList.length === pointer)
+      newEquationFormatted.push(
+        <span className="pointer-span empty-pointer"></span>
+      );
 
     return newEquationFormatted;
   }
@@ -61,6 +68,11 @@ export default function CalculatorProvider({ children }: { children: any }) {
 
       setResult("err");
     }
+  }
+
+  function reset() {
+    setEquation("");
+    setPointer(0);
   }
 
   function addSymbol(symbol: string) {
@@ -85,9 +97,9 @@ export default function CalculatorProvider({ children }: { children: any }) {
   }
 
   function changePointer(position: number) {
-    if(position > equation.length ) return  setPointer(equation.length);
-    
-    if(position < 0 ) return  setPointer(0);
+    if (position > equation.length) return setPointer(equation.length);
+
+    if (position < 0) return setPointer(0);
 
     setPointer(position);
   }
@@ -106,6 +118,7 @@ export default function CalculatorProvider({ children }: { children: any }) {
         equation,
         result,
         pointer,
+        reset,
         formatEquation,
         compute,
         addSymbol,

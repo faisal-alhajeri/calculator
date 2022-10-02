@@ -1,6 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
-import { useCalculator } from "./context/CalculatorContext";
+import NumberButton from "./buttons/NumberButton";
+import { operators, useCalculator } from "./context/CalculatorContext";
 
 function App() {
   const {
@@ -12,47 +15,92 @@ function App() {
     deleteSymbol,
     pointer,
     next,
-    prev
+    prev,
   } = useCalculator();
 
   return (
     <div id="main-container">
+      {/* <h1>My Calculator</h1> */}
+
       <div id="calculator">
         <div id="calculator-show">
           <div id="calculator-equation">{formatEquation()}</div>
           <div id="calculator-result">
             {result}
             <br />
-            {pointer}
+            {/* {pointer} */}
           </div>
         </div>
-        <div id="calculator-buttons">
+        <div id="calculator-buttons-container">
           {/* <input style={{height: '100px'}} onChange={(e) => addSymbol(e.target.value)} /> */}
-          <div>
+          <div style={{ textAlign: "center", padding: "10px" }}>
+            <button
+              className="calc-button w-25"
+              onClick={() => prev()}
+            >{`<`}</button>
+            <button
+              className="calc-button  w-25"
+              onClick={() => next()}
+            >{`>`}</button>
+          </div>
+          <Container>
+            <Row>
+              <Col xs={8}>
+                <div className="d-flex flex-column ">
+                  <div className="">
+                  <NumberButton  num="1" />
+                  <NumberButton  num="2" />
+                  <NumberButton  num="3" />
+                  </div>
+                  <div className="">
+                  <NumberButton  num="4" />
+                  <NumberButton  num="5" />
+                  <NumberButton  num="6" />
+                  </div>
+                  <div className="">
+                  <NumberButton  num="7" />
+                  <NumberButton  num="8" />
+                  <NumberButton  num="9" />
+                  </div>
+                  <div className="">
+                  <NumberButton  num="0" />
+                  <NumberButton  num="(" />
+                  <NumberButton  num=")" />
+
+                  </div>
+
+
+
+                </div>
+
+
+              </Col>
+              <Col xs={4}>
+                {operators.map((symbol) => (
+                  <NumberButton num={symbol} />
+                ))}
+              </Col>
+            </Row>
+
             
-              <button onClick={() => prev()} >{`<`}</button>
-              <button onClick={() => next()} >{`>`}</button>
+          <button className="calc-button" onClick={() => deleteSymbol()}>
+            del
+          </button>
+          <button className="calc-button" onClick={() => compute()}>
+            =
+          </button>
+          </Container>
 
-          </div>
 
-          <div>
-            {Array(10)
-              .fill(0)
-              .map((value, index) => (
-                <button onClick={() => addSymbol(index.toString())}>
-                  {index}
-                </button>
-              ))}
-          </div>
 
-          <div>
-            {["+", "-", "*", "/"].map((symbol) => (
-              <button onClick={() => addSymbol(symbol)}>{symbol}</button>
-            ))}
-          </div>
-          <button onClick={() => deleteSymbol()}>delete</button>
-          <button onClick={() => compute()}>=</button>
         </div>
+      </div>
+      <div>
+        Created By{" "}
+        <a href="https://github.com/faisal-alhajeri" target="_blanck" className="link"> 
+          {" "}
+          Faisal Alhajeri
+        </a>
       </div>
     </div>
   );
