@@ -34,6 +34,9 @@ a.link{
   position: relative;
   border-radius:7px;
   background-color: lightskyblue;
+  border: 0.5px solid black;
+  overflow-wrap: anywhere;
+
 }
 
 #calculator-buttons-container{
@@ -43,10 +46,7 @@ a.link{
   background-color: lightgray;
   height: 59%;
   box-sizing: border-box;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-   */
+
 }
 
 #calculator-equation{

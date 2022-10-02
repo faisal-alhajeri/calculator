@@ -19,6 +19,23 @@ function App() {
     reset
   } = useCalculator();
 
+  useEffect(() => {
+    function handlePress(e: any) {
+      const numbersAndOperators = ['1','2','3','4','5','6','7','8','9','0','(',')','-','+','*','/']
+      if(numbersAndOperators.includes(e.key)){
+        addSymbol(e.key)
+      } else if(e.key === 'Enter'){
+        compute()
+      } else if(e.key === 'Backspace'){
+        deleteSymbol()
+      }
+
+    }
+
+    document.addEventListener("keydown", handlePress);
+    return () => document.removeEventListener("keydown", handlePress);
+  }, [addSymbol]);
+
   return (
     <div id="main-container">
       {/* <h1>My Calculator</h1> */}

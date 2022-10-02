@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCalculator } from "../context/CalculatorContext";
 import AbstractButton, { CalculatorButton } from "./AbstractButton";
 
@@ -12,6 +12,7 @@ export default function NumberButton({
   ...restProps
 }: NumberButtonType) {
   const { addSymbol } = useCalculator();
+
 
   return (
     <AbstractButton
