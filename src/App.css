@@ -7,6 +7,7 @@ a.link{
 }
 
 #main-container{
+  background-color: rgb(228, 228, 228);
   height: 100vh;
   display: flex;
   justify-content: space-evenly;
@@ -32,7 +33,7 @@ a.link{
   box-sizing: border-box;
   position: relative;
   border-radius:7px;
-
+  background-color: lightskyblue;
 }
 
 #calculator-buttons-container{
