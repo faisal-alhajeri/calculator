@@ -31,6 +31,7 @@ function App() {
       } else if(e.key === 'ArrowRight'){
         next()
       } else if(e.key === 'ArrowLeft'){
+        
         prev()
       }
 
