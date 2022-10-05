@@ -68,7 +68,7 @@ a.link{
 .pointer-span{
   background-color: grey;
   color: white;
-  animation: blinking-pointer 1.5s step-start forwards infinite;
+  animation: blinking-pointer 1.5s step-end forwards infinite;
 }
 
 @keyframes blinking-pointer {
